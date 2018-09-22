@@ -1,14 +1,12 @@
 # NodeJS Express Postgresql
 
-
-
 ## Overview
 The following repository is a `todo` API example developed with NodeJS, the Express framework and Postgres.
 
 This repo serves two main goals:
 
-1. Example application using [Codeship Pro]()
-2. A [Todo Backend](http://todobackend.com/) community project.  
+1. Example application with docker
+2. A Todo Backend project with node, express and postgresql
 
 The following `README` is a guide to build and deploy. You will also be able to run this project locally, and use it as a starter app for NodeJS Docker projects.
 
@@ -30,22 +28,27 @@ Signup for each of these is free, and should only take you a few minutes if you 
 
 Once you have everything ready to go, you can move on to the next step.
 
+
 ## Testing
 
 This project uses [Jest]() integration testing of the `todo` api, and [eslint]() for code linting.  
 
 In this section, you will set up your repositor and test the build locally.
 
-### Fork repo
-Using the account you set up in the Getting Started section, you will now create your own repository to connect to Codeship.
+### Fork This Repo
+
+Using the account you set up in the Getting Started section, you will now create your own repository.
 
 Since this repository is on Github, you can [fork this repo] ```(https://help.github.com/articles/fork-a-repo/) and move on to the next step.
-
 
 > Make sure to copy the 'Repository Clone URL' link for the next step, you will use it to set up the project.
 
 You now should have a remote repository that is publicly accessible in your account.
 
+Navigate to the location on your system that you forked this repo to. 
+
+Inside the directory nodejs-express-todoapp-dockerized and type ```docker-compose up --build```. 
+This process may take some time.
 
 ## Continuous Deployment to Heroku
 
@@ -68,23 +71,14 @@ This app uses [`PostgreSQL`](https://www.postgresql.org/) as it's database, and 
 
 Copy the new application name for use later.
 
-### Get Your Heroku API key
-1. Click on your avatar in the upper right, then click `Account Settings`
-2. Near the bottom, you will find `API key`. Click the `Reveal` button
-3. Copy the API key
-4. In the project files on your local machine, open `deployment.env.sample` and change `your_api_key_here` to your api key without any qutes.
-13. Rename `deployment.env.sample` to `deployment.env`
-
 
 ### Commit changes and push
 
 At this point, you have everything you need to test and deploy the project.
 
-4. Make sure all files are added, and commit your changes.
-3. Push to the master branch of your remote repository.
-4. Open your Codeship project in a browser.
-5. Click the build to watch it happen.
+1. Make sure all files are added, and commit your changes.
+2. Push to the master branch of your remote repository.
 
 When complete and the build is green, you should now be able to navigate to the app with the Heroku provided url `yourappname.heroku.com`.
 
-If you run into trouble at any point, please submit an [issue here](https://github.com/codeship-library/nodejs-express-todoapp/issues/new).
+If you run into trouble at any point, please submit an [issue here] !!!!(https://github.com/co.
