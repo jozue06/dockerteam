@@ -11,16 +11,16 @@
     "build-server": "babel src --out-dir build -s --ignore src/__tests__/**",
     "build": "npm run clean && npm run build-server",
     "prestart": "npm run build && npm run migrate",
-    "start": "node ./build/index.js",
+    "start": "nodemon ./build/index.js",
     "lint": "eslint src",
     "test": "jest",
     "watch-tests": "npm run migrate && esw src & jest --watchAll",
-     "dev": "nodemon --watch ./src --ignore ./src/__tests__ ",
+     "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"npm start\"",
     "coverage": "jest --coverage",
     "migrate": "node ./node_modules/db-migrate/bin/db-migrate up all"
   },
   "keywords": [
-    "todo-backend",
+    "todo-backend", 
     "api",
     "node",
     "express"
