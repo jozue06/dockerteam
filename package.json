@@ -4,7 +4,7 @@
   "description": "a Node.js/Express implementation of the Todo-Backend API spec",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kellyjandrews/nodejs-express-todoapp"
+    "url": ""
   },
   "scripts": {
     "clean": "rm -rf build && mkdir build",
@@ -25,15 +25,15 @@
     "node",
     "express"
   ],
-  "author": "Kelly J Andrews <kelly@kellyjandrews.com>",
+  "author": "",
   "license": "MIT",
   "engines": {
     "node": "7.7.1"
   },
   "bugs": {
-    "url": "https://github.com/kellyjandrews/nodejs-express-todoapp/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/kellyjandrews/nodejs-express-todoapp",
+  "homepage": "",
   "dependencies": {
     "babel-cli": "^6.23.0",
     "babel-polyfill": "^6.23.0",
