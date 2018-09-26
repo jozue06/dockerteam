@@ -1,8 +1,14 @@
-FROM node:7.7.2-alpine
 
-WORKDIR /usr/app
+FROM ubuntu:18.04
 
-COPY package.json .
-RUN npm install --quiet
+# need WORKDIR COPY ADD CMD ???
 
-COPY . .
+RUN apt-get update -y \
+    && apt-get install curl -y \
+    # && apt-get install python3 -y \
+    # && apt-get install python3-pip -y \
+    && apt-get install nodejs -y \
+    && apt-get install npm -y \
+    && npm install -g nodemon
+
+EXPOSE 8080

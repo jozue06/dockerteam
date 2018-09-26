@@ -1,19 +1,41 @@
-version: '2'
+version: '3'
+
 services:
-  web:
+
+  base_img:
     build: .
-    command: npm run dev
     volumes:
-    - .:/usr/app/
-    - /usr/app/node_modules
+      - "./src:/usr/src:rw"
     ports:
-      - "3000:3000"
+      - "3000:8080"
+  # need to make the base image persistent 
+
+  pgdb:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: docker_psql
+    volumes:
+      - "./dataM:/data/db:rw"
+    ports:
+      - "3309:5432"
     depends_on:
-      - postgres
+      - "base_img"
+    
+  mongo:
+    image: mongo
     environment:
-      DATABASE_URL: postgres://todoapp@postgres/todos
-  postgres:
-    image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: todoapp
-      POSTGRES_DB: todos
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - "./dataM:/data/db:rw"
+    ports:
+      - "27017:27017"
+    depends_on:
+      - "base_img"
+
+    # dont think the DBs need to be persistent so maybe remove the "volumes" from both services
+
+# django:
+#   image: django
