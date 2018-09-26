@@ -1,7 +1,4 @@
-/.env
-/node_modules/
-DS_Store
-npm-debug.log
-build
-jest
-*.env
+node_modules
+dataM
+dataP
+.dockerignore
