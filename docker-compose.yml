@@ -30,8 +30,9 @@ services:
     #   POSTGRES_USER: root
     #   POSTGRES_PASSWORD: password
     #   POSTGRES_DB: docker_psql
-    # volumes:
-    #   - "./dataP:/data/db:rw"
+    restart: always
+    volumes:
+      - ./dataP:/var/lib/postgresql/data:rw
     # expose:
     #   - "5432"
     ports:
@@ -46,8 +47,8 @@ services:
     # environment:
     #   MONGO_INITDB_ROOT_USERNAME: root
     #   MONGO_INITDB_ROOT_PASSWORD: password
-    # volumes:
-    #   - "./dataM:/data/db:rw"
+    volumes:
+      - ./dataM:/data/db:rw
     # expose:
     #   - "27017"
     ports:
@@ -56,3 +57,8 @@ services:
     #   - "base_img"
 
     # dont think the DBs need to be persistent so maybe remove the "volumes" from both services
+
+  # volumes:
+  #   mongo-volume
+  #   psql-volume
+    
