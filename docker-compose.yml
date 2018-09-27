@@ -8,13 +8,13 @@ services:
     # volumes:
     #   - .:/app
     ports:
-      - "3000:8080"
+      - "3001:8080"
     depends_on:
       - "mongo"
       - "pgdb"
-    links:
-      - "mongo"
-      - "pgdb"
+    # links:
+    #   - "mongo"
+    #   - "pgdb"
   
   # need a wait for it command for both postgres and mongo
   # ports publishes ports to the host machine
@@ -26,12 +26,14 @@ services:
 
   pgdb:
     image: postgres
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: docker_psql
+    # environment:
+    #   POSTGRES_USER: root
+    #   POSTGRES_PASSWORD: password
+    #   POSTGRES_DB: docker_psql
     # volumes:
     #   - "./dataP:/data/db:rw"
+    # expose:
+    #   - "5432"
     ports:
       - "5432:5432"
 
@@ -41,11 +43,13 @@ services:
     
   mongo:
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: password
     # volumes:
     #   - "./dataM:/data/db:rw"
+    # expose:
+    #   - "27017"
     ports:
       - "27017:27017"
     # depends_on:
