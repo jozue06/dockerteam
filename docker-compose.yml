@@ -2,13 +2,27 @@ version: '3'
 
 services:
 
-  base_img:
+  web:
     build: .
-    volumes:
-      - "./src:/usr/src:rw"
+    # command: npm start
+    # volumes:
+    #   - .:/app
     ports:
       - "3000:8080"
+    depends_on:
+      - "mongo"
+      - "pgdb"
+    links:
+      - "mongo"
+      - "pgdb"
+  
+  # need a wait for it command for both postgres and mongo
+  # ports publishes ports to the host machine
+  # expose exposes ports but only within the container network (maybe only have to do this with the DBs and only publish the web-app)
+  # depends_on is essentially saying if this service is started dont do it without laughing the dbs 
   # need to make the base image persistant 
+
+  # you can connect to anyother container in a network by there service name as the host
 
   pgdb:
     image: postgres
@@ -16,26 +30,25 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DB: docker_psql
-    volumes:
-      - "./dataM:/data/db:rw"
+    # volumes:
+    #   - "./dataP:/data/db:rw"
     ports:
-      - "3309:5432"
-    depends_on:
-      - "base_img"
+      - "5432:5432"
+
+    # depends_on:
+    #   - "base_img"
+    # the volumes paths have to be different because they are overwriting each other?
     
   mongo:
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-    volumes:
-      - "./dataM:/data/db:rw"
+    # volumes:
+    #   - "./dataM:/data/db:rw"
     ports:
       - "27017:27017"
-    depends_on:
-      - "base_img"
+    # depends_on:
+    #   - "base_img"
 
     # dont think the DBs need to be persistent so maybe remove the "volumes" from both services
-
-# django:
-#   image: django

@@ -1,20 +1,36 @@
-# FROM nginx:latest
-
 FROM ubuntu:18.04
-# everything that comes with nginx and then build on top
-# WORKDIR /usr/share/nginx/html
+# RUN mkdir /app
+# RUN mkdir -p /app
 
-RUN apt-get update -y \
-    && apt-get install curl -y \
+# WORKDIR /app
+# COPY ./package.json .
+
+# split this RUN up to have package json below it and RUN npm install?
+RUN apt-get update -y
+    # && apt-get install curl -y \
     # && apt-get install python3 -y \
     # && apt-get install python3-pip -y \
-    && apt-get install nodejs -y \
-    && apt-get install npm -y \
-    && npm install -g nodemon
+    # && apt-get install nodejs -y \
+    # && apt-get install npm -y \
+    # && npm install -g nodemon
+    # && npm install
 
-# COPY . .
-#copy everything to everything
+# COPY ./package.json /app
+# RUN npm install --quiet
+
+# COPY . /usr/src
+# COPY . /app
+
 EXPOSE 8080
+
+# be overwritten in the docker-compose
+# CMD ["npm", "start"]
+# CMD ["nodemon", "index.js"]
+
+
+
+
+
 
 # CMD curl ifconfig.me/ip
 # only can have one CMD and one ENTRYPOINT in DF because all the successive ones overwrite
