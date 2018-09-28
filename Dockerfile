@@ -14,7 +14,8 @@ RUN apt-get update -y
     # && apt-get install npm -y \
     # && npm install -g nodemon
     # && npm install
-
+RUN mkdir dataM 
+RUN mkdir dataP
 # COPY ./package.json /app
 # RUN npm install --quiet
 
