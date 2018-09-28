@@ -12,7 +12,7 @@ app.use(bodyParser.json({type: 'application/json'}));
 app.disable('etag');
 
 app.use('/todos', routes());
-app.get('/fun', (req,res)=> res.send("fun times weeeeee"));
+app.get('/fun', (req,res)=> res.send("fun times sdfgsdfgsdfgsdf"));
 const errorHandler = new ErrorHandler();
 
 // validation errors are not typed correctly - changing here
