@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 // import User from '../models/model.js';
 
 const router = express.Router()
@@ -7,7 +7,7 @@ router.get('/', (req, res) => res.send('ROUTER Hello World!'))
 
 router.get('/user', (req, res, next) => {
 
-    console.log('user get all route')
+    res.send('user route')
 //   User.find({})
 //     .then( data => {
 //       res.send(data);
@@ -31,4 +31,4 @@ router.post('/user', (req,res,next) => {
     //   .catch( next );
   });
 
-export default router;
+module.exports = router;
