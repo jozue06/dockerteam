@@ -1,17 +1,31 @@
-const express = require('express')
-const app = express()
-const port = 8080
-// dont know if this is correctly exposing this outside the container or does it matter if the server runs outside
+'use strict';
 
-app.get('/', (req, res) => res.send('Helasdasdlo World!'))
+// require('dotenv').config();
+require('babel-register');
 
-// put routes here to hit the mongo and psql DBs that are running
+let MONGODB_URI = 'mongodb://localhost:27017/docker_test_internal'
+let POSTGRES_URI = 'postgres://localhost:5432/docker_pg_test_internal'
 
-// connect to mongod with mongoose here too because at this point mongo and psql are fired up and running on their exposed ports
+// MONGO
+const mongoose = require('mongoose');
+mongoose.connect(MONGODB_URI);
 
-// "connect" to psql?
+// POSTGRES
+const pg = require('pg');
+const pgClient = new pg.Client(POSTGRES_URI);
+pgClient.connect()
 
-// mongo = 27017
-// psql = 3309
+const app = require('./src/app.js');
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.start(8080);
+
+
+/*
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
+
+// postgres stuff
+const pg = require('pg');
+const pgClient = new pg.Client(process.env.POSTGRES_URI);
+pgClient.connect()
+*/

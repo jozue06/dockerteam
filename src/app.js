@@ -1,12 +1,38 @@
-// have express server routes here?
+const cors = require('cors');
+const express = require('express');
+const router = require('./routes/routes.js');
+// import badId from './middleware/badId.js';
 
-// have a package.json in the container automatically install all dependencies - express, jest, babel, etc
 
-// presentation notes
-/*
+const app = express();
 
-15 minutes each
-path to MVP and some research
-were fucked to we can do everything 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cors());
 
-*/
+app.use(router);
+
+// app.use(badId);
+
+
+let serverOn = false;
+// let server;
+
+module.exports = {
+  start: (port) => {
+    if(!serverOn) {
+      app.listen(port, (err) => {
+        if(err) {throw err;}
+        console.log('LISTENING ON PORT: ', port);
+      });
+    } else {
+      console.log('Server is already running');
+    }
+  },
+  stop: () => {
+    app.close( () => {
+      console.log('Server has stopped');
+    });
+  },
+  server: app,
+};
