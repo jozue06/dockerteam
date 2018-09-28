@@ -3,8 +3,8 @@
 // require('dotenv').config();
 require('babel-register');
 
-let MONGODB_URI = 'mongodb://localhost:27017/docker_test_internal'
-let POSTGRES_URI = 'postgres://localhost:5432/docker_pg_test_internal'
+let MONGODB_URI = 'mongodb://localhost:27017/'
+let POSTGRES_URI = 'postgres://localhost:5432/'
 
 // MONGO
 const mongoose = require('mongoose');

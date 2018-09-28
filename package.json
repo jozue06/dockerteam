@@ -2,11 +2,10 @@
   "name": "docker_test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "rm -rf build && mkdir build",
     "prestart": "npm run build",
-    "start": "nodemon ./build/index.js"
+    "start": "nodemon ./index.js"
   },
   "author": "max",
   "license": "ISC",
