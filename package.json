@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "build": "rm -rf build && mkdir build",
+    "prestart": "npm run build",
+    "start": "nodemon ./build/index.js"
   },
   "author": "max",
   "license": "ISC",

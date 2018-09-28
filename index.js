@@ -28,8 +28,8 @@ require('babel-register');
 
 // how to set the inter-container networked mongo db = host name isnt localhost?
 // the docker-compose service name can be the host name?
-// let mongoUri = 'mongodb://mongo:27017'
 
+// let mongoUri = 'mongodb://mongo:27017'
 let mongoUri = 'mongodb://localhost:27017'
 
 const mongoose = require('mongoose');
@@ -38,4 +38,4 @@ mongoose.connect(mongoUri);
 const app = require('./src/app.js');
 
 // make it static to not pass it ENV
-app.start(3333);
+app.start(8080);

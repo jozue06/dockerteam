@@ -2,3 +2,4 @@ node_modules
 dataM
 dataP
 .dockerignore
+npm-debug.log

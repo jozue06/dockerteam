@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 // import User from '../models/model.js';
 
 const router = express.Router()
@@ -31,4 +31,4 @@ router.post('/user', (req,res,next) => {
     //   .catch( next );
   });
 
-export default router;
+module.exports = router;

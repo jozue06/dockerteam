@@ -1,20 +1,6 @@
-// have express server routes here?
-
-// have a package.json in the container automatically install all dependencies - express, jest, babel, etc
-
-// presentation notes
-/*
-
-15 minutes each
-path to MVP and some research
-were fucked to we can do everything 
-
-*/
-
-
-import cors from 'cors';
-import express from 'express';
-import router from './routes/routes.js';
+const cors = require('cors');
+const express = require('express');
+const router = require('./routes/routes.js');
 // import badId from './middleware/badId.js';
 
 
