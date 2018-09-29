@@ -8,8 +8,8 @@ let MONGODB_URI = 'mongodb://mongo:27017'
 // MONGO
 // ==========
 const mongoose = require('mongoose');
-mongoose.connect(MONGODB_URI, function(error) {
-    console.log('ERROR with connecting with MONGO',error)
+mongoose.connect(MONGODB_URI, function() {
+    console.log('connecting with MONGO')
 });
 
 // POSTGRES
