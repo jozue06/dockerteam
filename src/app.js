@@ -1,10 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const m_router = require('./routes/m_routes.js');
-// const p_router = require('./routes/p_routes.js');
-
-// import badId from './middleware/badId.js';
-
+const p_router = require('./routes/p_routes.js');
 
 const app = express();
 
@@ -13,14 +10,9 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 app.use(m_router);
-// app.use(p_router);
-
-
-// app.use(badId);
-
+app.use(p_router);
 
 let serverOn = false;
-// let server;
 
 module.exports = {
   start: (port) => {
