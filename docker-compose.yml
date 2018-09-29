@@ -8,6 +8,7 @@ services:
     # volumes:
     #   - .:/usr/src/app
     #   - /usr/src/app/node_modules
+    restart: always
     ports:
       - "3001:8080"
     depends_on:
@@ -25,6 +26,7 @@ services:
 
   psql:
     image: postgres
+    restart: always
     volumes:
       - ./dataP:/var/lib/postgresql/data:rw
     ports:
@@ -38,13 +40,12 @@ services:
     
   mongo:
     image: mongo
-<<<<<<< HEAD
-=======
+
     # environment:
     #   MONGO_INITDB_ROOT_USERNAME: root
     #   MONGO_INITDB_ROOT_PASSWORD: password
     restart: always
->>>>>>> josh
+
     volumes:
       - ./dataM:/data/db:rw
     ports:
