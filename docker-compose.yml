@@ -5,61 +5,52 @@ services:
   web:
     build: .
     command: npm start
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+    # volumes:
+    #   - .:/usr/src/app
+    #   - /usr/src/app/node_modules
     ports:
       - "3001:8080"
     depends_on:
-      - "mongo"
-      - "pgdb"
-    # links:
-    #   - "mongo"
-    #   - "pgdb"
-  
-  # need a wait for it command for both postgres and mongo
-  # ports publishes ports to the host machine
-  # expose exposes ports but only within the container network (maybe only have to do this with the DBs and only publish the web-app)
-  # depends_on is essentially saying if this service is started dont do it without laughing the dbs 
-  # need to make the base image persistant 
-
-  # you can connect to anyother container in a network by there service name as the host
-
-  pgdb:
-    image: postgres
+      # - mongo
+      - psql
+    # networks:
+    #   frontend:
+    #     ipv4_address: 172.20.0.1
     # environment:
-    #   POSTGRES_USER: root
-    #   POSTGRES_PASSWORD: password
-    #   POSTGRES_DB: docker_psql
-    restart: always
+    #   # WAIT_HOSTS: mongo:27017, pgdb:5432
+    #   POSTGRES_URL: postgres://172.20.0.2:5432
+    #   MONGO_URL: mongodb://172.20.0.3:27017
+    env_file: .docker.env
+    # smae level of the docker compose
+
+  psql:
+    image: postgres
+    # restart: always
+    # linux constring and user and password and database name
     volumes:
       - ./dataP:/var/lib/postgresql/data:rw
-    # expose:
-    #   - "5432"
     ports:
       - "5432:5432"
-
-    # depends_on:
-    #   - "base_img"
-    # the volumes paths have to be different because they are overwriting each other?
+    environment:
+      POSTGRES_PASSWORD: password
+      # POSTGRES_USER: docker
+    # networks:
+    #   frontend:
+    #     ipv4_address: 172.20.0.2
     
-  mongo:
-    image: mongo
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: root
-    #   MONGO_INITDB_ROOT_PASSWORD: password
-    volumes:
-      - ./dataM:/data/db:rw
-    # expose:
-    #   - "27017"
-    ports:
-      - "27017:27017"
-    # depends_on:
-    #   - "base_img"
+  # mongo:
+  #   image: mongo
+  #   volumes:
+  #     - ./dataM:/data/db:rw
+  #   ports:
+  #     - "27017:27017"
+    # networks:
+    #   frontend:
+    #     ipv4_address: 172.20.0.3
 
-    # dont think the DBs need to be persistent so maybe remove the "volumes" from both services
-
-  # volumes:
-  #   mongo-volume
-  #   psql-volume
-    
+# networks:
+#   frontend:
+#     ipam:
+#       config:
+#         - subnet: 172.20.0.0/16
+#         # - subnet: 172.20.0.0/24
