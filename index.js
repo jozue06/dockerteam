@@ -44,7 +44,6 @@ const mongoose = require('mongoose');
 mongoose.connect(MONGODB_URI, function(error) {
     console.log('ERROR with connecting with MONGO',error)
 });
-
 // POSTGRES
 // ==========
 const { Client } = require('pg')

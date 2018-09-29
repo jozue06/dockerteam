@@ -36,7 +36,7 @@ router.get('/getuser', (req, res) => {
     .catch( err => console.log(err) );
 });
 
-router.post('/useradd', (req,res) => {
+router.post('/adduser', (req,res) => {
 
     // console.log('POST object length: ', Object.keys(req.body).length);
     // console.log('POST object content: ', req.body);
@@ -51,7 +51,7 @@ router.post('/useradd', (req,res) => {
       .catch( err => console.log(err) );
     });
 
-    router.put('/api/v1/cats/:id', (req,res,next) => {
+    router.put('/update/user/:id', (req,res,next) => {
   
       if(Object.keys(req.body).length === 0) {
         // console.log('INSIDE FAILED PUT: ', req.body);
@@ -81,7 +81,7 @@ router.post('/useradd', (req,res) => {
       }
       
     });
-    router.delete('/api/v1/user/:id', (req,res,next) => {
+    router.delete('/delete/user/:id', (req,res,next) => {
       User.remove({_id: `${req.params.id}`})
       //findOneDelete
         .then( data => sendJSON(res,data))
@@ -89,7 +89,7 @@ router.post('/useradd', (req,res) => {
     });
     
     //i have it named like this to prevent misshaps
-    router.delete('/api/v1/deleteall', (req,res,next) => {
+    router.delete('/deleteall', (req,res,next) => {
       User.deleteMany({})
         .then( data => sendJSON(res,data))
         .catch( next );
