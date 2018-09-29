@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 app.use(m_router);
-// app.use(p_router);
+app.use(p_router);
 
 
 // app.use(badId);
