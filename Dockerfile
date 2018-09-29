@@ -12,8 +12,8 @@ RUN apt-get update -y && \
 
 # WORKDIR /usr/src/app
 
-# COPY package.json .
-# RUN npm install --quiet
+COPY package.json .
+RUN npm install --quiet
 
 COPY . .
 
