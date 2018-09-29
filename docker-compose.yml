@@ -4,20 +4,20 @@ services:
 
   web:
     build: .
-    command: npm start
+    # command: npm start
     # volumes:
     #   - .:/usr/src/app
     #   - /usr/src/app/node_modules
     ports:
       - "3001:8080"
     depends_on:
-      - mongo
       - psql
+      - mongo
     networks:
       mongo_net:
-        # ipv4_address: 172.16.0.2
+        ipv4_address: 172.16.0.4
     environment:
-      WAIT_HOSTS: mongo:27017, pgdb:5432
+      WAIT_HOSTS: mongo:27017, psql:5432
     #   POSTGRES_URL: postgres://172.20.0.2:5432
     #   MONGO_URL: mongodb://172.20.0.3:27017
     env_file: .docker.env
@@ -34,7 +34,7 @@ services:
       POSTGRES_USER: docker
     networks: 
       mongo_net:
-        # ipv4_address: 172.16.0.3
+        ipv4_address: 172.16.0.3
     
   mongo:
     image: mongo
