@@ -11,13 +11,13 @@ services:
     ports:
       - "3001:8080"
     depends_on:
-      # - mongo
+      - mongo
       - psql
-    # networks:
-    #   frontend:
-    #     ipv4_address: 172.20.0.1
-    # environment:
-    #   # WAIT_HOSTS: mongo:27017, pgdb:5432
+    networks:
+      mongo_net:
+        # ipv4_address: 172.16.0.2
+    environment:
+      WAIT_HOSTS: mongo:27017, pgdb:5432
     #   POSTGRES_URL: postgres://172.20.0.2:5432
     #   MONGO_URL: mongodb://172.20.0.3:27017
     env_file: .docker.env
@@ -25,32 +25,35 @@ services:
 
   psql:
     image: postgres
-    # restart: always
-    # linux constring and user and password and database name
     volumes:
       - ./dataP:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: password
-      # POSTGRES_USER: docker
-    # networks:
-    #   frontend:
-    #     ipv4_address: 172.20.0.2
+      POSTGRES_USER: docker
+    networks: 
+      mongo_net:
+        # ipv4_address: 172.16.0.3
     
-  # mongo:
-  #   image: mongo
-  #   volumes:
-  #     - ./dataM:/data/db:rw
-  #   ports:
-  #     - "27017:27017"
-    # networks:
-    #   frontend:
-    #     ipv4_address: 172.20.0.3
+  mongo:
+    image: mongo
+    volumes:
+      - ./dataM:/data/db:rw
+    ports:
+      - "27017:27017"
+    networks:
+      mongo_net:
+        ipv4_address: 172.16.0.1
+    command: mongod --bind_ip 127.0.0.1,172.16.0.1
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: example
 
-# networks:
-#   frontend:
-#     ipam:
-#       config:
-#         - subnet: 172.20.0.0/16
-#         # - subnet: 172.20.0.0/24
+networks:
+  mongo_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          gateway: 172.16.0.254

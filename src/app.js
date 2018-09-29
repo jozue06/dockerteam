@@ -1,6 +1,8 @@
 const cors = require('cors');
 const express = require('express');
-const router = require('./routes/routes.js');
+const m_router = require('./routes/m_routes.js');
+// const p_router = require('./routes/p_routes.js');
+
 // import badId from './middleware/badId.js';
 
 
@@ -10,7 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
-app.use(router);
+app.use(m_router);
+// app.use(p_router);
+
 
 // app.use(badId);
 
