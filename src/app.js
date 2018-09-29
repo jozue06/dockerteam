@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const m_router = require('./routes/m_routes.js');
-// const p_router = require('./routes/p_routes.js');
+const p_router = require('./routes/p_routes.js');
 
 // import badId from './middleware/badId.js';
 

@@ -6,11 +6,8 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/puppies';
+var connectionString = 'postgres://localhost:5432';
 var db = pgp(connectionString);
-
-
-
 
 function getAllPuppies(req, res, next) {
     db.any('SELECT * FROM pups')
@@ -79,30 +76,31 @@ function getAllPuppies(req, res, next) {
 
   // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-      res.status( err.code || 500 )
-      .json({
-        status: 'error',
-        message: err
-      });
-    });
-  }
+// if (app.get('env') === 'development') {
+//     app.use(function(err, req, res, next) {
+//       res.status( err.code || 500 )
+//       .json({
+//         status: 'error',
+//         message: err
+//       });
+//     });
+//   }
   
-  // production error handler
-  // no stacktraces leaked to user
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500)
-    .json({
-      status: 'error',
-      message: err.message
-    });
-  });
+//   // production error handler
+//   // no stacktraces leaked to user
+//   app.use(function(err, req, res, next) {
+//     res.status(err.status || 500)
+//     .json({
+//       status: 'error',
+//       message: err.message
+//     });
+//   });
 
+
+  
 
 module.exports = {
     getAllPuppies: getAllPuppies,
-    getSinglePuppy: getSinglePuppy,
     createPuppy: createPuppy,
     updatePuppy: updatePuppy,
     removePuppy: removePuppy

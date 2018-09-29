@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS puppies;
 CREATE DATABASE puppies;
 
-\c puppies;
+-- puppies;
 
 CREATE TABLE pups (
   ID SERIAL PRIMARY KEY,
