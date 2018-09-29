@@ -2,11 +2,14 @@
   "name": "codecommando_docker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "rm -rf build && mkdir build",
     "prestart": "npm run build",
+<<<<<<< HEAD
     "start": "nodemon index.js"
+=======
+    "start": "nodemon ./index.js"
+>>>>>>> josh
   },
   "author": "max",
   "license": "ISC",

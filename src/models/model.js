@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+
+const mongoose =require('mongoose');
+
 
 const User = mongoose.Schema({
   name: { type: String, uppercase: true}

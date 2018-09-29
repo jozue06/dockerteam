@@ -38,6 +38,13 @@ services:
     
   mongo:
     image: mongo
+<<<<<<< HEAD
+=======
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: password
+    restart: always
+>>>>>>> josh
     volumes:
       - ./dataM:/data/db:rw
     ports:
