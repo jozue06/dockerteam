@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf build && mkdir build",
     "prestart": "npm run build",
-    "start": "nodemon index.js"
+    "watch": "nodemon index.js"
   },
   "author": "max",
   "license": "ISC",

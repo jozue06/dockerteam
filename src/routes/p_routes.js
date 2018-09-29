@@ -1,13 +1,8 @@
 // POSTGRES Routes
 
 const fs = require('fs');
-// const pg = require('pg');
 const express = require('express');
 const router = express.Router();
-// const PORT = process.env.PORT||3000;
-// const conString = 'postgres://localhost:5432';
-
-// const pgClient = require('../../index.js')
 
 const { Client } = require('pg')
 
@@ -42,9 +37,26 @@ function loadArticles() {
     pgClient.query('SELECT COUNT(*) FROM articles;')
       .then(result => {
         if(!parseInt(result.rows[0].count)) {
-          fs.readFile('../pdata/test.json', 'utf8', (err, fd) => {
-            if (err) {console.log('FS error:',err);}
-            JSON.parse(fd).forEach(ele => {
+
+        //   fs.readFile('../pdata/test.json', 'utf8', (err, fd) => {
+            //   utf-8 ?
+            // if (err) {
+            //     return console.log('FD error:',fd);
+            // }
+            // maybe already parsed
+            // JSON.parse(fd).forEach(ele => {
+            let fd = [
+                {
+                  "title": "Transmitting Open-source Arrays",
+                  "category": "firewall",
+                  "author": "Dr. Tressie Kuphal",
+                  "authorUrl": "http://http://corrine.net",
+                  "publishedOn": "2014-01-22",
+                  "body": "## The RSS sensor is down, synthesize the open-source sensor so we"
+                }
+              ]
+              console.log('FD: ',fd)
+            fd.forEach(ele => {
              pgClient.query(`
                 INSERT INTO
                 articles(title, author, "authorUrl", category, "publishedOn", body)
@@ -53,7 +65,7 @@ function loadArticles() {
               [ele.title, ele.author, ele.authorUrl, ele.category, ele.publishedOn, ele.body]
               )
             })
-          })
+        //   })
         }
       })
   }
