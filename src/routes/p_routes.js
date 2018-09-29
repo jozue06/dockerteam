@@ -43,6 +43,7 @@ function loadArticles() {
       .then(result => {
         if(!parseInt(result.rows[0].count)) {
           fs.readFile('../pdata/test.json', 'utf8', (err, fd) => {
+            if (err) {console.log('FS error:',err);}
             JSON.parse(fd).forEach(ele => {
              pgClient.query(`
                 INSERT INTO
