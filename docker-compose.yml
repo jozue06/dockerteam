@@ -33,7 +33,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_USER: docker
+      POSTGRES_USER: postgres
     networks: 
       mongo_net:
         ipv4_address: 172.16.0.3
