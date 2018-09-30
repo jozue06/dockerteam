@@ -6,3 +6,6 @@ build
 jest
 *.env
 codeship.aes
+dataM
+dataP
+migrations
